@@ -52,7 +52,7 @@ from flask import Flask, request, Response, abort
 
 app = Flask(__name__)
 
-@app.route('/webhook', methods=['GET'])
+@app.route('/flights-around', methods=['GET'])
 def respond():
   if request.method == 'GET':
     GPS_lat = float(request.args.get('GPS_lat'))
