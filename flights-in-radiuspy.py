@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Sep 17 15:02:42 2021
-
 @author: james
 """
 
@@ -18,9 +17,9 @@ def main(GPS_lat,GPS_lon,):
   #GPS_lat = 44.434362 #Lake Simcoe
   #Radius to check in Kilometers
   radii = [1,10,25,50]
-  result = 'Flights in the air:;'
+  result = 'Flights in the air:<br>'
   for radius in radii:
-    result = result + "Within " + str(radius) + "km: " + str(check_flights(GPS_lon,GPS_lat,radius)) + ";"
+    result = result + "Within " + str(radius) + "km: " + str(check_flights(GPS_lon,GPS_lat,radius)) + "<br>"
   return result
 
 #https://calgary.rasc.ca/latlong.htm
@@ -49,10 +48,12 @@ def check_flights(GPS_lon,GPS_lat,radius):
 
 #https://hackernoon.com/how-to-listen-for-webhooks-using-python-7g153uad
 from flask import Flask, request, Response, abort
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/flights-around', methods=['GET'])
+@app.route('/', methods=['GET'])
 def respond():
   if request.method == 'GET':
     GPS_lat = float(request.args.get('GPS_lat'))
