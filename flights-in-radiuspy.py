@@ -8,6 +8,7 @@ from FlightRadar24.api import FlightRadar24API
 import math
 fr_api = FlightRadar24API()
 
+#Set redii to be chcked and checks through the different radii
 def main(GPS_lat,GPS_lon,):
   #GPS_X is longitude 
   #GPS_Y is Lattitude
@@ -22,6 +23,7 @@ def main(GPS_lat,GPS_lon,):
     result = result + "Within " + str(radius) + "km: " + str(check_flights(GPS_lon,GPS_lat,radius)) + "<br>"
   return result
 
+#Checks flight flights with radius of the GPS
 #https://calgary.rasc.ca/latlong.htm
 def check_flights(GPS_lon,GPS_lat,radius):
   #Assuming flat ground and not on ellipsoid
@@ -35,7 +37,6 @@ def check_flights(GPS_lon,GPS_lat,radius):
   #'tly,bry,tlx,brx'
   bounds = str(GPS_lat+lat_change) + "," + str(GPS_lat-lat_change) + "," + str(GPS_lon-lon_change) + "," + str(GPS_lon+lon_change)
   #Search for Flights
-  #flights = fr_api.get_flights(bounds = '43.704955,43.645439,-79.681345,-79.576936')
   flights = fr_api.get_flights(bounds = bounds)
   #Filter out flights on ground
   flights_in_air = 0
@@ -46,6 +47,7 @@ def check_flights(GPS_lon,GPS_lat,radius):
   #Return number of flights
   return flights_in_air
 
+#Set up Webhook using Flash
 #https://hackernoon.com/how-to-listen-for-webhooks-using-python-7g153uad
 from flask import Flask, request, Response, abort
 from flask_cors import CORS
