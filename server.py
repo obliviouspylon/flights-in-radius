@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route('/', methods=['GET'])
 def respond():
-  if request.method == 'GET':
+  if (request.method == 'GET') and (None != request.args.get('GPS_lat')) and (None != request.args.get('GPS_lat')):
     GPS_lat = float(request.args.get('GPS_lat'))
     GPS_lon = float(request.args.get('GPS_lon'))
     return FIR.main(GPS_lat,GPS_lon),200
