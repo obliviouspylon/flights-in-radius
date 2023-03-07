@@ -32,6 +32,10 @@ def main(GPS_lat,GPS_lon,):
 #Checks flight flights with radius of the GPS
 #https://calgary.rasc.ca/latlong.htm
 def check_flights(GPS_lon,GPS_lat,max_radius):
+
+  if max_radius < 10:
+    max_radius = 10
+
   #Assuming flat ground and not on ellipsoid
   #1 degree of lattitude in KM at current GPS
   lat_scale =  111.13295 - 0.55982 * math.cos(math.radians(2 * GPS_lon)) + 0.00117 * math.cos(math.radians(4 * GPS_lon))
@@ -45,8 +49,6 @@ def check_flights(GPS_lon,GPS_lat,max_radius):
   #Search for Flights
   flights = fr_api.get_flights(bounds = bounds)
 
-  if max_radius < 10:
-    max_radius = 10
   radii = [[1,0], 
            [int(max_radius*0.25),0], 
            [int(max_radius*0.5),0], 
@@ -60,14 +62,14 @@ def check_flights(GPS_lon,GPS_lat,max_radius):
       for radius in radii:
         if distance[0] < radius[0]:
           radius[1] = radius[1] + 1
-      planes.append((distance[1]/max_radius,distance[2]/max_radius,flight.heading))
+      planes.append((distance[1]/max_radius,distance[2]/max_radius,flight.heading,flight.callsign))
       
-  message = 'Flights in the air:<br>'
+  message = 'Flights in the air:\n'
   for radius in radii:
-    message = message + "Within " + str(radius[0]) + "km: " + str(radius[1]) + "<br>"
+    message = message + "Within " + str(radius[0]) + "km: " + str(radius[1]) + "\n"
   #Return number of flights
   result = {
-    "max-radius" : max_radius,
+    "max_radius" : max_radius,
     "radii" : radii,
     "planes" : planes,
     "message" : message
