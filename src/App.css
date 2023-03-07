@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+  color: white;
+  
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#myCanvas {
+  border:1px solid #000000;
+}
+
+#GeoLocation{
+  width: 50%;
+  max-width: 500px;
+  margin: auto;
+}
+
+#radar {
+  width: 50%;
+  max-width: 500px;
+
+}
