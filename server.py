@@ -15,6 +15,10 @@ def hello():
 def indexCSS():
     return send_file('build\static\css\main.38b24421.css')
 
+@app.route("/flights/main.38b24421.css.map")
+def indexCSSmap():
+    return send_file('build\static\css\main.38b24421.css.map')
+
 @app.route("/flights/arrow.svg")
 def arrowSVG():
     return send_file('build/arrow.svg')

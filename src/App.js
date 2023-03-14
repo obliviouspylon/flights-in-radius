@@ -4,6 +4,8 @@ import './App.css';
 import Radar from './components/radar';
 import GeoLocation from './components/GeoLocation';
 
+var URL = process.env.REACT_APP_FLIGHT_URL
+
 function App() {
 
   // let planeInfo = [[0.2, -0.3, 260],[-0.2, -0.6, 105]]
@@ -17,7 +19,7 @@ function App() {
   const [msg, setMsg] = useState("");
 
   const checkflights = () => {
-    fetch(`/flights/check`, {
+    fetch(`${URL}/flights/check`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

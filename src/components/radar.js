@@ -93,8 +93,6 @@ function planeArrow(arrowImg, centerX, context, planeInfo, arrowSize = 20) {
   // Draw the arrow image on the canvas
   context.drawImage(arrowImg, -arrowSize / 2, -arrowSize / 2, arrowSize, arrowSize);
 
-
-
   // Restore the context state
   context.restore();
 
