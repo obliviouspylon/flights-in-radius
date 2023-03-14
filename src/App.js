@@ -51,7 +51,8 @@ function App() {
       <header className="App-header">
       </header>
       <GeoLocation lat={lat} lng={lng} inputRadius={inputRadius} setLat={setLat} setLng={setLng} setMsg={setMsg} setInputRadius={setInputRadius} checkflights={checkflights} />
-      {msg}
+      {msg} 
+      <br />
       <Radar planeInfo={planeInfo} max_radius={max_radius} /><br />
     </div>
   );
